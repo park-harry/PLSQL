@@ -92,3 +92,26 @@ begin
         dbms_output.put_line(v_ename ||'의 월급은 '||v_sal||'입니다.');
 end;
 /
+
+문제 3. 다음과 같이 이름을 물어보게하고 이름을 입력하면 해당 사원의 이름과 월급과 직업이 
+출력되게 하시오.
+		이름을 입력하세요: SCOTT
+		SCOTT 의 월급은 3000 이고 직업은 ANALYST 입니다.
+		
+set serveroutput on 
+set verify off
+accept p_ename prompt '이름을 입력하세요~'
+
+declare 
+    v_ename emp.ename%type;
+    v_sal emp.sal%type;
+    v_job emp.job%type;
+
+begin 
+    select ename, sal, job into v_ename, v_sal,v_job
+    from emp 
+    where ename = '&p_ename';
+
+    dbms_output.put_line(v_ename||'의 월급은 '||v_sal||' 이고 직업은 '||v_job||'입니다.');
+end;
+/
