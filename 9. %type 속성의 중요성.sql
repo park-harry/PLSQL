@@ -72,3 +72,23 @@ dbms_output.put_line('해당 사원의 월급은 ' || v_sal );
 dbms_output.put_line('해당 사원의 월급은 ' || v_job );
 end;
 /
+
+문제 2. 다음과 같이 사원번호를 물어보게 하고 사원번호를 입력하면 해당 사원의 이름과 월급이 다음과 
+같이 출력되게 하시오. 
+	사원번호를 입력하세요: 7788
+	SCOTT의 월급은 3000입니다.
+	
+set serveroutput on 
+accept p_empno prompt '사원번호를 입력하시오. '
+
+declare 
+        v_ename emp.ename%type;
+        v_sal  emp.sal%type;
+begin
+        select ename, sal into v_ename,v_sal
+        from emp 
+        where empno = &p_empno;
+        
+        dbms_output.put_line(v_ename ||'의 월급은 '||v_sal||'입니다.');
+end;
+/
